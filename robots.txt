@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kitchencabinetpaintingguys.com/sitemap.xml
