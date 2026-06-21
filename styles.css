@@ -109,9 +109,9 @@ p{margin:0 0 1em}
 
 /* ---------- page hero (inner pages) ---------- */
 .page-hero{
-  position:relative;min-height:230px;display:grid;place-items:center;text-align:center;
-  background:linear-gradient(rgba(28,40,66,.55),rgba(28,40,66,.55)),
-             linear-gradient(120deg,#cdb89e,#e7ddcf 55%,#d6cab8);
+  position:relative;min-height:280px;display:grid;place-items:center;text-align:center;
+  background:linear-gradient(120deg,rgba(20,28,48,.88) 0%,rgba(28,46,74,.66) 55%,rgba(44,125,128,.55) 100%),
+             url('images/kitchen-1.jpg') center/cover no-repeat;
   color:#fff;
 }
 .page-hero h1{color:#fff;font-size:42px}
@@ -138,7 +138,8 @@ p{margin:0 0 1em}
 
 /* ---------- sections ---------- */
 section{padding:84px 0}
-.section-light{background:var(--light)}
+.section-light{background:linear-gradient(180deg,#f6f8fb 0%,#e9eef3 100%)}
+.section-tint{background:linear-gradient(135deg,#eef4f3 0%,#f7f3ec 100%)}
 .section-navy{background:var(--navy);color:#cdd6e6}
 .section-navy h2{color:#fff}
 .center{text-align:center}
@@ -149,10 +150,9 @@ section{padding:84px 0}
 /* who-we-are split */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
 .split h2{font-size:34px;margin-bottom:18px}
-.collage{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:150px;gap:14px}
-.collage .ph:nth-child(1){grid-row:span 1}
-.collage .ph:nth-child(2){grid-row:span 2}
-.collage .ph:nth-child(3){grid-row:span 1}
+.collage{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:160px;gap:14px}
+.collage img,.collage .ph{height:100%;width:100%;object-fit:cover;border-radius:8px;display:block}
+.collage > *:nth-child(2){grid-row:span 2}
 
 /* placeholder image blocks */
 .ph{
@@ -242,13 +242,15 @@ textarea{min-height:96px;resize:vertical}
 
 /* blog */
 .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
-.post .ph{height:230px;margin-bottom:18px}
-.post h3{font-size:16px;margin-bottom:10px}
-.post p{font-size:13px;line-height:1.6}
+.post{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 4px 18px rgba(20,30,55,.05)}
+.post img,.post .ph{height:210px;width:100%;object-fit:cover;display:block;border-radius:0;margin:0}
+.post h3{font-size:16px;margin:0 0 10px;padding:0 22px}
+.post h3{padding-top:20px}
+.post p{font-size:13px;line-height:1.6;padding:0 22px 24px;margin:0;color:var(--body)}
 
 /* about people */
 .person{display:grid;grid-template-columns:340px 1fr;gap:50px;align-items:start;margin-bottom:70px}
-.person .ph{height:380px}
+.person img,.person .ph{height:380px;width:100%;object-fit:cover;border-radius:10px;display:block}
 .person h2{font-size:30px;margin-bottom:6px}
 .person .role{color:var(--teal);font-weight:600;font-size:14px;margin-bottom:14px}
 .person p{font-size:14px}
