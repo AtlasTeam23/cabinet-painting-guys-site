@@ -46,10 +46,23 @@
     </div>
 
     <div style="max-width:740px;margin:0 auto;background:#f6f4ef;border:1px solid var(--line);border-radius:12px;padding:34px">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
-        <img src="images/kitchen-5.jpg" alt="The Cabinet Painting Guys — finished cabinet painting project" loading="lazy" style="height:100%;width:100%;object-fit:cover;border-radius:8px;display:block">
-        <img src="images/kitchen-1.jpg" alt="The Cabinet Painting Guys — finished cabinet painting project" loading="lazy" style="height:100%;width:100%;object-fit:cover;border-radius:8px;display:block">
+      <style>
+        .ba-slider{--pos:50%;position:relative;width:100%;aspect-ratio:16/10;border-radius:8px;overflow:hidden;user-select:none;-webkit-user-select:none;touch-action:none;cursor:ew-resize;background:#000;margin-bottom:14px}
+        .ba-slider img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+        .ba-slider .ba-after{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+        .ba-tag{position:absolute;top:12px;z-index:3;background:rgba(20,24,29,.72);color:#fff;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+        .ba-tag-l{left:12px}.ba-tag-r{right:12px}
+        .ba-handle{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:#fff;transform:translateX(-50%);z-index:2;pointer-events:none;box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+        .ba-grip{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:#fff;color:#23395c;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+      </style>
+      <div class="ba-slider" id="baSlider" role="img" aria-label="Before and after cabinet painting — drag to compare">
+        <img class="ba-before" src="images/kitchen-1.jpg" alt="Kitchen cabinets before painting" draggable="false">
+        <img class="ba-after" src="images/kitchen-5.jpg" alt="Kitchen cabinets after cabinet painting" draggable="false">
+        <span class="ba-tag ba-tag-l">Before</span>
+        <span class="ba-tag ba-tag-r">After</span>
+        <div class="ba-handle"><span class="ba-grip">&#8644;</span></div>
       </div>
+      <p class="center" style="font-size:13px;color:var(--body);margin:0 0 4px">Drag the slider to compare</p>
       <h3 class="center" style="font-size:22px;margin:20px 0 24px">See Your New Cabinets Before You Paint</h3>
       <div class="steps-3">
         <div class="step"><div class="n">1</div><b>Upload Photos</b><small>Upload up to 3 photos of your kitchen.</small></div>
@@ -92,5 +105,21 @@
 </footer>
 
 <script src="site.js"></script>
+<script>
+(function(){
+  var s=document.getElementById('baSlider');
+  if(!s)return;
+  function set(clientX){
+    var r=s.getBoundingClientRect();
+    var p=((clientX-r.left)/r.width)*100;
+    p=Math.max(3,Math.min(97,p));
+    s.style.setProperty('--pos',p+'%');
+  }
+  var drag=false;
+  s.addEventListener('pointerdown',function(e){drag=true;try{s.setPointerCapture(e.pointerId);}catch(_){}set(e.clientX);});
+  s.addEventListener('pointermove',function(e){if(drag)set(e.clientX);});
+  window.addEventListener('pointerup',function(){drag=false;});
+})();
+</script>
 </body>
 </html>
